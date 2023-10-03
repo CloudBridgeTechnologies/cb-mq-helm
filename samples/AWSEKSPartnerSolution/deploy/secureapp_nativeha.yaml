@@ -61,3 +61,6 @@ route:
     mqtraffic: true
     annotations: 
       service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+      service.beta.kubernetes.io/aws-load-balancer-type: "external"
+      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "instance"
+      
