@@ -22,6 +22,9 @@ metadata:
   # Additional annotations to be added to the load balancer annotations
   {{- with .Values.route.loadBalancer.annotations }}
   annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "external"
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "instance"
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internal"
     {{- toYaml . | nindent 4 }}
   {{- end }}    
 spec:
