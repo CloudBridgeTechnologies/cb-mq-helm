@@ -31,7 +31,7 @@ spec:
       name: {{ include "ibm-mq.fullname" . }}
       port:
         number: 9443
-  ingressClassName: alb
+  ingressClassName: nginx
   rules:
   {{- if .Values.route.ingress.webconsole.hostname }}
     - host: {{ .Values.route.ingress.webconsole.hostname }}
