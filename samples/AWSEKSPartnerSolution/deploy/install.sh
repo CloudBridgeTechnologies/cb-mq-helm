@@ -26,6 +26,7 @@ fi
 if [ $# -eq 4 ]
   then
     LB_ANNOTATION="--set-string route.loadBalancer.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-internal=${4}"
+    LB_ANNOTATION="--set-string route.loadBalancer.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-subnets=subnet-0aa46e504e1a7aebc\,subnet-0a4916537d048318b\,subnet-02009dcfd8edc779c"
 fi
 
 export QM_KEY=$(cat ../../genericresources/createcerts/server.key | base64 | tr -d '\n')
