@@ -16,7 +16,7 @@
 set -x
 
 export TARGET_NAMESPACE=${1:-"default"}
-export APPLICATION_NAME="devqm"
+export APPLICATION_NAME=devqm
 if [ $# -gt 2 ]
   then
     MQ_ADMIN_PASSWORD_NAME="--set queueManager.envVariables[0].name=MQ_ADMIN_PASSWORD"
@@ -39,4 +39,4 @@ export APP_CERT=$(cat ../../genericresources/createcerts/application.crt | base6
 kubectl config set-context --current --namespace=$TARGET_NAMESPACE
 kubectl apply -f mtlsqm.yaml
 
-helm install ${APPLICATION_NAME} ../../../charts/ibm-mq -f secureapp_nativeha.yaml $MQ_ADMIN_PASSWORD_NAME $MQ_ADMIN_PASSWORD_VALUE $MQ_APP_PASSWORD_NAME $MQ_APP_PASSWORD_VALUE $LB_ANNOTATION
+helm install $APPLICATION_NAME ../../../charts/ibm-mq -f secureapp_nativeha.yaml $MQ_ADMIN_PASSWORD_NAME $MQ_ADMIN_PASSWORD_VALUE $MQ_APP_PASSWORD_NAME $MQ_APP_PASSWORD_VALUE $LB_ANNOTATION
