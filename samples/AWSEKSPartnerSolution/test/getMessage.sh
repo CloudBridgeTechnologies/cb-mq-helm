@@ -13,16 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+export APPLICATION_NAME=devqm
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 export TARGET_NAMESPACE=${1:-"default"}
 export MQCCDTURL="${DIR}/ccdt_generated.json"
 export MQSSLKEYR="${DIR}/../../genericresources/createcerts/application"
 
 export PORT="1414"
-export IPADDRESS="$(kubectl get service secureapphelm-ibm-mq-loadbalancer -o jsonpath='{..hostname}')"
+export IPADDRESS="$(kubectl get service $APPLICATION_NAME-ibm-mq-loadbalancer -o jsonpath='{..hostname}')"
 
 ( echo "cat <<EOF" ; cat ccdt_template.json ; echo EOF ) | sh > ccdt_generated.json
 
 
-echo "Starting amqsghac" secureapphelm
-/opt/mqm/samp/bin/amqsghac APPQ secureapphelm
+echo "Starting amqsghac" $APPLICATION_NAME
+/opt/mqm/samp/bin/amqsghac APPQ $APPLICATION_NAME
