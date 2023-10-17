@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export APPLICATION_NAME=devqm
+APPLICATION_NAME=devqm
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 export TARGET_NAMESPACE=${1:-"default"}
 export MQCCDTURL="${DIR}/ccdt_generated.json"

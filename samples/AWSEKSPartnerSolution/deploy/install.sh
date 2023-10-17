@@ -16,7 +16,7 @@
 set -x
 
 export TARGET_NAMESPACE=${1:-"default"}
-export APPLICATION_NAME=devqm
+APPLICATION_NAME=devqm
 if [ $# -gt 2 ]
   then
     MQ_ADMIN_PASSWORD_NAME="--set queueManager.envVariables[0].name=MQ_ADMIN_PASSWORD"

@@ -14,7 +14,7 @@
 # limitations under the License.
 
 export TARGET_NAMESPACE=default
-export APPLICATION_NAME=devqm
+APPLICATION_NAME=devqm
 
 helm delete $APPLICATION_NAME
 kubectl delete secret helmsecure -n $TARGET_NAMESPACE
