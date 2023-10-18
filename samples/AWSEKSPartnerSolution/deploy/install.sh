@@ -14,6 +14,7 @@
 # limitations under the License.
 
 set -x
+
 APPLICATION_NAME=devqm
 export TARGET_NAMESPACE=${1:-"default"}
 if [ $# -gt 2 ]
