@@ -13,6 +13,7 @@
 # limitations under the License.
 license: accept
 queueManager:
+  name: devqm
   nativeha:
     enable: true
     tls:
@@ -63,4 +64,6 @@ route:
       service.beta.kubernetes.io/aws-load-balancer-internal: "true"
       service.beta.kubernetes.io/aws-load-balancer-type: "external"
       service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "instance"
+web: 
+  enable: true      
       

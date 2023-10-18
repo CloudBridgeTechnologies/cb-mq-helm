@@ -14,9 +14,8 @@
 # limitations under the License.
 
 set -x
-
-export TARGET_NAMESPACE=${1:-"default"}
 APPLICATION_NAME=devqm
+export TARGET_NAMESPACE=${1:-"default"}
 if [ $# -gt 2 ]
   then
     MQ_ADMIN_PASSWORD_NAME="--set queueManager.envVariables[0].name=MQ_ADMIN_PASSWORD"
