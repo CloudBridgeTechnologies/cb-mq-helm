@@ -15,18 +15,18 @@
 
 set -x
 
-APPLICATION_NAME=devqm
 export TARGET_NAMESPACE=${1:-"default"}
-if [ $# -gt 2 ]
+if [ $# -gt 3 ]
   then
     MQ_ADMIN_PASSWORD_NAME="--set queueManager.envVariables[0].name=MQ_ADMIN_PASSWORD"
-    MQ_ADMIN_PASSWORD_VALUE="--set queueManager.envVariables[0].value=${2}"
+    MQ_ADMIN_PASSWORD_VALUE="--set queueManager.envVariables[0].value=${3}"
     MQ_APP_PASSWORD_NAME="--set queueManager.envVariables[1].name=MQ_APP_PASSWORD"
-    MQ_APP_PASSWORD_VALUE="--set queueManager.envVariables[1].value=${3}"
+    MQ_APP_PASSWORD_VALUE="--set queueManager.envVariables[1].value=${4}"
+    APPLICATION_NAME="--set queueManager.envVariables[3].value=${2}"
 fi
-if [ $# -eq 4 ]
+if [ $# -eq 5 ]
   then
-    LB_ANNOTATION="--set-string route.loadBalancer.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-internal=${4}"
+    LB_ANNOTATION="--set-string route.loadBalancer.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-internal=${5}"
     LB_ANNOTATION="--set-string route.loadBalancer.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-subnets=subnet-0aa46e504e1a7aebc\,subnet-0a4916537d048318b\,subnet-02009dcfd8edc779c"
 fi
 

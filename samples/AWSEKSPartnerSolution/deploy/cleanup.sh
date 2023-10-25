@@ -13,8 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export TARGET_NAMESPACE=default
-APPLICATION_NAME=devqm
+export TARGET_NAMESPACE=${1:-"default"}
+if [ $# -gt 3 ]
+  then
+    APPLICATION_NAME="--set queueManager.envVariables[3].value=${2}"
+fi
 
 helm delete $APPLICATION_NAME
 kubectl delete secret helmsecure -n $TARGET_NAMESPACE
