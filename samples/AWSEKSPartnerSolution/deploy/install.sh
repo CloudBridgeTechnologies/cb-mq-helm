@@ -24,6 +24,10 @@ if [ $# -gt 3 ]
     MQ_APP_PASSWORD_VALUE="--set queueManager.envVariables[1].value=${4}"
     APPLICATION_NAME="--set queueManager.envVariables[3].value=${2}"
 fi
+
+echo "...Queue Manager Application Name is $APPLICATION_NAME..."
+echo "...Namespace is $TARGET_NAMESPACE..."
+
 if [ $# -eq 5 ]
   then
     LB_ANNOTATION="--set-string route.loadBalancer.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-internal=${5}"
