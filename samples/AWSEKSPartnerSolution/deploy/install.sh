@@ -22,7 +22,7 @@ if [ $# -gt 3 ]
     MQ_ADMIN_PASSWORD_VALUE="--set queueManager.envVariables[0].value=${3}"
     MQ_APP_PASSWORD_NAME="--set queueManager.envVariables[1].name=MQ_APP_PASSWORD"
     MQ_APP_PASSWORD_VALUE="--set queueManager.envVariables[1].value=${4}"
-    APPLICATION_NAME="--set queueManager.envVariables[3].value=${2}"
+    APPLICATION_NAME="${2}"
 fi
 
 echo "...Queue Manager Application Name is $APPLICATION_NAME..."
@@ -43,4 +43,4 @@ export APP_CERT=$(cat ../../genericresources/createcerts/application.crt | base6
 kubectl config set-context --current --namespace=$TARGET_NAMESPACE
 kubectl apply -f mtlsqm.yaml
 
-helm install $APPLICATION_NAME ../../../charts/ibm-mq -f secureapp_nativeha.yaml $MQ_ADMIN_PASSWORD_NAME $MQ_ADMIN_PASSWORD_VALUE $MQ_APP_PASSWORD_NAME $MQ_APP_PASSWORD_VALUE $LB_ANNOTATION
+helm install $APPLICATION_NAME ../../../charts/ibm-mq -f secureapp_nativeha.yaml $MQ_ADMIN_PASSWORD_NAME $MQ_ADMIN_PASSWORD_VALUE $MQ_APP_PASSWORD_NAME $MQ_APP_PASSWORD_VALUE $LB_ANNOTATION --
