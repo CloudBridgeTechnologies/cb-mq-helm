@@ -40,7 +40,7 @@ persistence:
     # name sets part of the name for this Persistent Volume Claim
     name: "data"
     ## size is the minimum size of the Persistent Volume
-    size: 2Gi
+    size: 4Gi
     ## storageClass to use for this PVCs
     storageClassName: ""
 
@@ -62,18 +62,18 @@ persistence:
     # name sets part of the name for this Persistent Volume Claim
     name: "qm"
     ## size is the minimum size of the Persistent Volume
-    size: 2Gi
+    size: 10Gi
     ## storageClass to use for this PVCs
     storageClassName: ""
 
 
 resources:
   limits:
-    cpu: 500m
-    memory: 1024Mi
+    cpu: 1000m
+    memory: 2048Mi
   requests:
-    cpu: 100m
-    memory: 512Mi
+    cpu: 200m
+    memory: 1024Mi
 
 security:
   # context section specifies additional security context settings for the pod

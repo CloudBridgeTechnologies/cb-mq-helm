@@ -28,10 +28,10 @@ fi
 echo "...Queue Manager Application Name is $APPLICATION_NAME..."
 echo "...Namespace is $TARGET_NAMESPACE..."
 
-if [ $# -eq 5 ]
+if [ $# -eq 8 ]
   then
     LB_ANNOTATION="--set-string route.loadBalancer.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-internal=${5}"
-    LB_ANNOTATION="--set-string route.loadBalancer.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-subnets=subnet-0aa46e504e1a7aebc\,subnet-0a4916537d048318b\,subnet-02009dcfd8edc779c"
+    LB_ANNOTATION="--set-string route.loadBalancer.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-subnets=${6}\,${7}\,${8}"
 fi
 
 export QM_KEY=$(cat ../../genericresources/createcerts/server.key | base64 | tr -d '\n')
@@ -43,4 +43,4 @@ export APP_CERT=$(cat ../../genericresources/createcerts/application.crt | base6
 kubectl config set-context --current --namespace=$TARGET_NAMESPACE
 kubectl apply -f mtlsqm.yaml
 
-helm install $APPLICATION_NAME ../../../charts/ibm-mq -f secureapp_nativeha.yaml $MQ_ADMIN_PASSWORD_NAME $MQ_ADMIN_PASSWORD_VALUE $MQ_APP_PASSWORD_NAME $MQ_APP_PASSWORD_VALUE $LB_ANNOTATION --
+helm install $APPLICATION_NAME ../../../charts/ibm-mq -f secureapp_nativeha.yaml $MQ_ADMIN_PASSWORD_NAME $MQ_ADMIN_PASSWORD_VALUE $MQ_APP_PASSWORD_NAME $MQ_APP_PASSWORD_VALUE $LB_ANNOTATION
