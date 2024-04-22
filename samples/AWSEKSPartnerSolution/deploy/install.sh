@@ -30,6 +30,8 @@ if [ $# -gt 3 ]
     resources_memory_limit="--set resources.limits.memory=${13}"
     resources_cpu_request="--set resources.requests.cpu=${14}"
     resources_memory_request="--set resources.limits.memory=${15}"
+    image_tag="--set image.tag=${16}"
+    image_repository="--set image.repository=${17}"
 fi
 
 echo "...Queue Manager Application Name is $APPLICATION_NAME..."
