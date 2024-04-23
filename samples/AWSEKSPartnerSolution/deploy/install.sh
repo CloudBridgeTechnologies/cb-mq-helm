@@ -52,4 +52,4 @@ export APP_CERT=$(cat ../../genericresources/createcerts/application.crt | base6
 kubectl config set-context --current --namespace=$TARGET_NAMESPACE
 kubectl apply -f mtlsqm.yaml
 
-helm install $APPLICATION_NAME ../../../charts/ibm-mq -f secureapp_nativeha.yaml $MQ_ADMIN_PASSWORD_NAME $MQ_ADMIN_PASSWORD_VALUE $MQ_APP_PASSWORD_NAME $MQ_APP_PASSWORD_VALUE $LB_ANNOTATION $persistence_datapvc_size $persistence_logpvc_size $persistence__qmpvc_size $resources_cpu_request $resources_memory_request  
+helm install $APPLICATION_NAME ../../../charts/ibm-mq -f secureapp_nativeha.yaml $MQ_ADMIN_PASSWORD_NAME $MQ_ADMIN_PASSWORD_VALUE $MQ_APP_PASSWORD_NAME $MQ_APP_PASSWORD_VALUE $LB_ANNOTATION $persistence_datapvc_size $persistence_logpvc_size $persistence__qmpvc_size $resources_cpu_request $resources_memory_request $image_tag $image_repository  
