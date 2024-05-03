@@ -50,7 +50,7 @@ pki:
           - app.crt
 metadata:
   annotations:
-    productName: "IBM MQ Advanced for Developers"
+    productName: "IBM MQ Advanced" 
     productID: "2f886a3eefbe4ccb89b2adb97c78b9cb"
     productChargedContainers: ""
     productMetric: "FREE"
