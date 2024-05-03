@@ -239,6 +239,8 @@ spec:
             value: {{ .Values.license }}
           - name: MQ_QMGR_NAME
             value: "{{ .Values.queueManager.name | default .Release.Name | replace "-" "" }}"
+          - name: AMQ_CLOUD_PAK
+            value: "{{ .Values.queueManager.amqcloudpak.enable | default false }}"
           - name: MQ_NATIVE_HA
             value: "{{ .Values.queueManager.nativeha.enable | default false }}"
           {{- if .Values.queueManager.multiinstance.enable }}
