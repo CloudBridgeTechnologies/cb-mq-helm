@@ -65,6 +65,15 @@ route:
       service.beta.kubernetes.io/aws-load-balancer-internal: "true"
       service.beta.kubernetes.io/aws-load-balancer-type: "external"
       service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "instance"
+  ingress:
+      webconsole: 
+        enable: true
+        hostname: 
+        path: /
+        tls: 
+          enable: false 
+          secret: 
+      annotations: {}
 web: 
   enable: true      
       
