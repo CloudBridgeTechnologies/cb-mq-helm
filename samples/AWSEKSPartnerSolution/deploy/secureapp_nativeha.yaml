@@ -74,6 +74,10 @@ route:
           enable: false 
           secret: 
       annotations: {}
+ 
 web: 
-  enable: true      
+  enabled: true
+  manualConfig:
+    secret:
+      name: mqweb-xml-secret       
       
