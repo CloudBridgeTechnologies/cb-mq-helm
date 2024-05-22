@@ -15,7 +15,7 @@ license: accept
 queueManager:
   amqcloudpak:
     enable: true
-  mqenableembeddedwebserver
+  mqenableembeddedwebserver:
     enable: true
   nativeha:
     enable: true
