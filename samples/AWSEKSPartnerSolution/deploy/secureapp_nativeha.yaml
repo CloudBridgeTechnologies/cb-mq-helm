@@ -79,6 +79,6 @@ route:
 web: 
   enabled: true
   manualConfig:
-    secret:
-      name: mqweb-xml-secret       
+     configMap:
+       name: mqweb-xml-configmap      
       
