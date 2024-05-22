@@ -188,5 +188,11 @@ affinity:
 
 tolerations: []
 
-web: 
-  enable: true
+web:
+  enabled: true
+  manualConfig:
+    secret:
+      name: mqweb-xml-secret
+
+
+
