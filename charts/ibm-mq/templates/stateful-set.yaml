@@ -155,6 +155,17 @@ spec:
               path: {{ . }}
           {{- end }}
       {{- end }}
+      {{- if $source.configMap }}
+      - name: trust{{- $index }}
+        configMap:
+          name: {{ $source.configMap.configMapName }}
+          defaultMode: 420
+          items:
+          {{- range $source.configMap.items }}
+            - key: {{ . }}
+              path: {{ . }}
+          {{- end }}
+      {{- end }}
       {{- end }}
       {{- range $index, $source := .Values.pki.keys }}
       {{- if $source.secret }}
@@ -221,6 +232,23 @@ spec:
           {{- end }}
       {{- end }}
       {{- end }}
+      {{- if .Values.web.manualConfig.configMap.name }}
+      - name: cm-webxml-{{ .Values.web.manualConfig.configMap.name }}
+        configMap:
+          name: {{ .Values.web.manualConfig.configMap.name }}
+          defaultMode: 0644
+          items:
+            - key: mqwebuser.xml
+              path: mqwebuser.xml
+      {{- else if .Values.web.manualConfig.secret.name }}
+      - name: s-webxml-{{ .Values.web.manualConfig.secret.name }}
+        secret:
+          secretName: {{ .Values.web.manualConfig.secret.name }}
+          defaultMode: 0644
+          items:
+            - key: mqwebuser.xml
+              path: mqwebuser.xml
+      {{- end }}
       terminationGracePeriodSeconds: {{.Values.queueManager.terminationGracePeriodSeconds}}
       containers:
         - name: qmgr
@@ -241,13 +269,23 @@ spec:
             value: "{{ .Values.queueManager.name | default .Release.Name | replace "-" "" }}"
           - name: AMQ_CLOUD_PAK
             value: "{{ .Values.queueManager.amqcloudpak.enable | default false }}"
-          - name: MQ_ENABLE_EMBEDDED_WEB_SERVER
-            value: "{{ .Values.queueManager.mqenableembeddedwebserver.enable | default true }}"
           - name: MQ_NATIVE_HA
             value: "{{ .Values.queueManager.nativeha.enable | default false }}"
           {{- if .Values.queueManager.multiinstance.enable }}
           - name: MQ_MULTI_INSTANCE
             value: "{{ .Values.queueManager.multiinstance.enable | default false }}"
+          {{- end }}
+          {{- /*
+            The following IF statement for the MQ_ENABLE_EMBEDDED_WEB_SERVER may initially look confusing.
+            Originally the helm chart did not set the environment variable. To protect backwards 
+            compatibility  as much as possible we wanted to maintain this behaviour. 
+            The first condition checks it is set to a non-false value, excludes both unset and false. 
+            In our case we want to explicitly set if it is NOT unset, hence the reason for the complex IF
+            statement.
+          */}}
+          {{- if or .Values.web.enable (eq .Values.web.enable false)}}
+          - name: MQ_ENABLE_EMBEDDED_WEB_SERVER
+            value: "{{ .Values.web.enable | default false }}"
           {{- end }}
           {{- if .Values.queueManager.nativeha.enable }}
           - name: MQ_NATIVE_HA_INSTANCE_0_NAME
@@ -376,6 +414,17 @@ spec:
           {{- if or .Values.persistence.logPVC.enable .Values.queueManager.multiinstance.enable }}
           - mountPath: "/mnt/mqm-log"
             name: {{ $logVolumeClaimName }}
+          {{- end }}
+          {{- if .Values.web.manualConfig.configMap.name }}
+          - name: cm-webxml-{{ .Values.web.manualConfig.configMap.name }}
+            mountPath: "/etc/mqm/web/installations/Installation1/servers/mqweb/mqwebuser.xml"
+            subPath: "mqwebuser.xml"
+            readOnly: true
+          {{- else if .Values.web.manualConfig.secret.name }}
+          - name: s-webxml-{{ .Values.web.manualConfig.secret.name }}
+            mountPath: "/etc/mqm/web/installations/Installation1/servers/mqweb/mqwebuser.xml"
+            subPath: "mqwebuser.xml"
+            readOnly: true
           {{- end }}
           securityContext:
             allowPrivilegeEscalation: false
