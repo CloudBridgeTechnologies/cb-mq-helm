@@ -283,9 +283,9 @@ spec:
             In our case we want to explicitly set if it is NOT unset, hence the reason for the complex IF
             statement.
           */}}
-          {{- if or .Values.web.enable (eq .Values.web.enable false)}}
+          {{- if .Values.web.enable }}
           - name: MQ_ENABLE_EMBEDDED_WEB_SERVER
-            value: "{{ .Values.web.enable | default false }}"
+            value: "{{ .Values.web.enable | default true }}"
           {{- end }}
           {{- if .Values.queueManager.nativeha.enable }}
           - name: MQ_NATIVE_HA_INSTANCE_0_NAME
