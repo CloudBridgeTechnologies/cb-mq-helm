@@ -75,7 +75,7 @@ route:
           secret: 
       annotations: {}
 web: 
-  enabled: true
+  enable: true
   manualConfig:
     configMap:
       name: mqweb-xml-configmap      
