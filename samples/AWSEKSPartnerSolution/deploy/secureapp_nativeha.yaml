@@ -52,10 +52,10 @@ pki:
           - app.crt
 metadata:
   annotations:
-    productName: "IBM MQ Advanced" 
-    productID: "2f886a3eefbe4ccb89b2adb97c78b9cb"
-    productChargedContainers: ""
-    productMetric: "FREE"
+    productName: "IBM MQ Advanced for Non-Production Environment" 
+    productID: "21dfe9a0f00f444f888756d835334909"
+    productMetric: "PROCESSOR_VALUE_UNIT"
+    productChargedContainers: "qmgr"
 route:
   nodePort:
     webconsole: true
