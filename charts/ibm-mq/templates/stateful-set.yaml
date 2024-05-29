@@ -482,8 +482,13 @@ spec:
 {{ toYaml .Values.resources.requests | indent 14 }}
       {{- if .Values.security.initVolumeAsRoot }}
       initContainers:
+        - name: create-user
+          image: busybox
+          command: ['sh', '-c', 'groupadd -r mqm && useradd -r -g mqm appuser && mkdir /home/appuser && chown appuser:mqm /home/appuser']
+          securityContext:
+          runAsUser: 0  # Run as root to create user
         - name: qmgr-init
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}":
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           terminationMessagePath: "/run/termination-log"
           command: ["runmqserver"]
