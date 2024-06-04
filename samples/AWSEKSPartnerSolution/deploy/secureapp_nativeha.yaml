@@ -36,7 +36,7 @@ persistence:
 security:
   context:
     fsGroup: 0
-    runAsUser: mqmuser
+    runAsUser: 1000
 pki:
   keys:
     - name: default
