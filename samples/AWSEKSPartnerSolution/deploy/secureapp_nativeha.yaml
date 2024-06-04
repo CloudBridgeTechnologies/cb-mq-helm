@@ -36,6 +36,7 @@ persistence:
 security:
   context:
     fsGroup: 0
+    runAsUser: mqmuser
 pki:
   keys:
     - name: default
@@ -79,6 +80,6 @@ route:
 web: 
   enable: true
   manualConfig:
-    configMap:
-      name: mqweb-xml-configmap      
+    secret:
+      name: mqweb-xml-secret    
       
