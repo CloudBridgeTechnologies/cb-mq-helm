@@ -36,7 +36,6 @@ persistence:
 security:
   context:
     fsGroup: 0
-    runAsUser: 1001
 pki:
   keys:
     - name: default
