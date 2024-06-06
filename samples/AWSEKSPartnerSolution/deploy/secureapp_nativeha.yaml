@@ -40,10 +40,11 @@ pki:
   keys:
     - name: default
       secret:
-        secretName: helmsecure
+        secretName: mtlscerts
         items:
           - tls.key
           - tls.crt
+          - ca.crt
   trust:
     - name: default
       secret:
