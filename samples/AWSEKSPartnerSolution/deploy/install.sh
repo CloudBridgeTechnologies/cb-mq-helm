@@ -43,9 +43,10 @@ if [ $# -eq 15 ]
     LB_ANNOTATION="--set-string route.loadBalancer.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-subnets=${6}\,${7}\,${8}"
 fi
 
-export QM_KEY=$(cat ../../genericresources/createcerts/server.key | base64 | tr -d '\n')
-export QM_CERT=$(cat ../../genericresources/createcerts/server.crt | base64 | tr -d '\n')
-export APP_CERT=$(cat ../../genericresources/createcerts/application.crt | base64 | tr -d '\n')
+export QM_KEY=$(cat /home/ec2-user/server.key | base64 | tr -d '\n')
+export QM_CERT=$(cat /home/ec2-user/server.crt | base64 | tr -d '\n')
+export CA_CERT=$(cat /home/ec2-user/ca.crt | base64 | tr -d '\n')
+#export APP_CERT=$(cat /home/ec2-user/application.crt | base64 | tr -d '\n')
 
 ( echo "cat <<EOF" ; cat mtlsqm.yaml_template ; echo EOF ) | sh > mtlsqm.yaml
 
