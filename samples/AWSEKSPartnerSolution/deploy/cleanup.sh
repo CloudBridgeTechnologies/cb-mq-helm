@@ -20,8 +20,8 @@ if [ $# -gt 3 ]
 fi
 
 helm delete $APPLICATION_NAME
-kubectl delete secret helmsecure -n $TARGET_NAMESPACE
-kubectl delete configmap helmsecure -n $TARGET_NAMESPACE
+kubectl delete secret mtlscerts -n $TARGET_NAMESPACE
+kubectl delete configmap mtlscerts -n $TARGET_NAMESPACE
 kubectl delete pvc data-$APPLICATION_NAME-ibm-mq-0 -n $TARGET_NAMESPACE
 kubectl delete pvc data-$APPLICATION_NAME-ibm-mq-1 -n $TARGET_NAMESPACE
 kubectl delete pvc data-$APPLICATION_NAME-ibm-mq-2 -n $TARGET_NAMESPACE
