@@ -20,13 +20,13 @@ queueManager:
   nativeha:
     enable: true
     tls:
-      secretName: helmsecure
+      secretName: mtlscerts
   mqscConfigMaps:
-    - name: helmsecure
+    - name: mtlscerts
       items:
         - mq.mqsc
   qminiConfigMaps:
-    - name: helmsecure
+    - name: mtlscerts
       items:
         - mq.ini
 persistence:
@@ -45,12 +45,6 @@ pki:
           - tls.key
           - tls.crt
           - ca.crt
-  trust:
-    - name: default
-      secret:
-        secretName: helmsecure
-        items:
-          - app.crt
 metadata:
   annotations:
     productName: "IBM MQ Advanced for Non-Production Environment" 
