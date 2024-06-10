@@ -38,12 +38,17 @@ security:
     fsGroup: 0
 pki:
   keys:
-    - name: default
+    - name: qm
       secret:
         secretName: mtlscerts
         items:
           - tls.key
           - tls.crt
+  trust:
+    - name: ca
+      secret:
+        secretName: mtlscerts
+        items:
           - ca.crt
 metadata:
   annotations:
