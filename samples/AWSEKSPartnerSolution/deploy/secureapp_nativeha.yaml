@@ -38,7 +38,7 @@ security:
     fsGroup: 0
 pki:
   keys:
-    - name: qm
+    - name: ha
       secret:
         secretName: mtlscerts
         items:
