@@ -1,4 +1,4 @@
-# © Copyright IBM Corporation 2023
+# © Copywright IBM Corporation 2023
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -52,8 +52,8 @@ pki:
           - ca.crt
 metadata:
   annotations:
-    productName: "IBM MQ Advanced for Non-Production Environment" 
-    productID: "21dfe9a0f00f444f888756d835334909"
+    productID: "208423bb063c43288328b1d788745b0c"
+    productName: "IBM MQ Advanced"
     productMetric: "PROCESSOR_VALUE_UNIT"
     productChargedContainers: "qmgr"
 route:
